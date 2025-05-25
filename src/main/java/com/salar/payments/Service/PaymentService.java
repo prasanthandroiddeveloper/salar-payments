@@ -19,18 +19,18 @@ public class PaymentService {
 
     public String createOrder() {
         CustomerDetails customerDetails = new CustomerDetails();
-        customerDetails.setCustomerId("123");
-        customerDetails.setCustomerPhone("9999999999");
+        customerDetails.setCustomerId("1957");
+        customerDetails.setCustomerPhone("9000968284");
 
         CreateOrderRequest request = new CreateOrderRequest();
-        request.setOrderAmount(BigDecimal.valueOf(10.00));
+        request.setOrderAmount(BigDecimal.valueOf(50.00));
         request.setOrderCurrency("INR");
         request.setCustomerDetails(customerDetails);
 
         try {
             ApiResponse<OrderEntity> response = cashfree.PGCreateOrder(request, null, null, null);
 
-            return response.getData().getOrderId();
+            return response.getData().getPaymentSessionId();
         } catch (ApiException e) {
             throw new RuntimeException("Failed to create order: " + e.getMessage(), e);
         }
